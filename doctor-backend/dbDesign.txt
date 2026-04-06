@@ -1,0 +1,39 @@
+Patient Collection:
+- id (object id)
+- name (string)
+- email (string)
+- age (number)
+- contactNumber (string)
+- password (string)
+- role (string: "patient")
+- address (string)
+- createdAt (date)
+- updatedAt (date)
+
+Doctor Collection:
+- id (object id)
+- name (string)
+- email (string)
+- age (number)
+- contactNumber (string)
+- password (string)
+- role (string: "doctor")
+- specialization (string)
+- experience (number)
+- TimeSlots : availableTimeSlots (array of strings)
+            : bookedTimeSlots (array of strings)
+- address (string)
+- createdAt (date)
+- updatedAt (date)
+
+Appointment Collection:
+- id (object id)  - uuid with unique constraint
+- patientId (object id, reference to Patient)
+- doctorId (object id, reference to Doctor)
+- appointmentDate (date)
+- appointmentTime (string)
+- status (string: "scheduled", "completed", "cancelled")
+- createdAt (date)
+- updatedAt (date)
+
+
