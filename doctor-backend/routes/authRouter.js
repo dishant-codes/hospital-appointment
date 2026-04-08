@@ -1,17 +1,16 @@
-import { Router } from "express";
-import { validateRegisterBody, valiedateLoginBody } from "../middleware/authMiddleware";
-import { loginController, registerController } from "../controller/authController";
-
+import {Router} from "express";
+import { adminLoginController, loginController, regsiterController } from "../controller/authController.js";
+import { validateAdminLoginBody, validateLoginBody, validateRegisterBody } from "../middleware/authMiddleware.js";
 
 const authRouter = Router();
 
-// POST /auth/register
-authRouter.post('/register', validateRegisterBody, registerController);
+// POST /auth/register - Register a new user (patient or doctor)
+authRouter.post("/register", validateRegisterBody, regsiterController);
 
-// POST /auth/login
-authRouter.post('/login', valiedateLoginBody, loginController)
+// POST /auth/login - Login a user and return a JWT token
+authRouter.post("/login", validateLoginBody, loginController );
 
-// POST /auth/admin/login
-authRouter.post('/admin/login')
+// POST /auth/admin/login - Admin login with email and password
+authRouter.post("/admin/login", validateAdminLoginBody, adminLoginController);
 
-export {authRouter}
+export default authRouter;

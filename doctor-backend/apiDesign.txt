@@ -18,6 +18,6 @@ Appointment:
 - DELETE /appointments/:id - Delete an appointment -> admin only    
 
 Authentication:
-- POST /auth/register - Register a new user (patient or doctor)
-- POST /auth/login - Login a user and return a JWT token
+- *POST /auth/register - Register a new user (patient or doctor)
+- *POST /auth/login - Login a user and return a JWT token
 - POST /auth/logout - Logout a user (invalidate JWT token)
