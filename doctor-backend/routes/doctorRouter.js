@@ -11,9 +11,10 @@ import { validateCreateDoctorBody, validateUpdateDoctorBody } from "../middlewar
 
 const doctorRouter = Router();
 const verifyAuthenticatedUser = authorizeRoles("patient", "doctor", "admin");
+const verifyDoctorRole = authorizeRoles("doctor");
 
 // GET /doctors - Get all doctors (admin only)
-doctorRouter.get("/", getAllDoctorsController);
+doctorRouter.get("/", verifyAdmin, getAllDoctorsController);
 
 // GET /doctors/:id - Get a specific doctor by ID
 doctorRouter.get("/:id", verifyAuthenticatedUser, getDoctorByIdController);
@@ -22,7 +23,7 @@ doctorRouter.get("/:id", verifyAuthenticatedUser, getDoctorByIdController);
 doctorRouter.post("/", verifyAdmin, validateCreateDoctorBody, createDoctorController);
 
 // PUT /doctors/:id - Update a doctor's information
-doctorRouter.put("/:id", verifyAuthenticatedUser, validateUpdateDoctorBody, updateDoctorController);
+doctorRouter.put("/:id", verifyDoctorRole, validateUpdateDoctorBody, updateDoctorController);
 
 // DELETE /doctors/:id - Delete a doctor (admin only)
 doctorRouter.delete("/:id", verifyAdmin, deleteDoctorController);

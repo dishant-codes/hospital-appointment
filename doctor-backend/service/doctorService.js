@@ -22,6 +22,7 @@ const getDoctorByIdService = async (id) => {
     }
 };
 
+
 const createDoctorService = async (doctorData) => {
     try {
         const newDoctor = new Doctor(doctorData);
